@@ -4,7 +4,8 @@ const config = require('../config');
 const sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: config.databasePath,
-    logging: false
+    logging: false,
+
 })
 
 async function testDatabaseConnection(){
@@ -25,7 +26,11 @@ async function syncDatabase(){
     }
 }
 
-module.exports = sequelize;
+module.exports = {
+    sequelize,
+    testDatabaseConnection,
+    syncDatabase
+};
 
 if (require.main === module) {
     testDatabaseConnection();

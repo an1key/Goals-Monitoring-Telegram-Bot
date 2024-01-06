@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../utils/database');
+const {sequelize} = require('../utils/database');
 const User = require('./user');
 
 const Achievement = sequelize.define('Achievement', {
@@ -18,6 +18,8 @@ const Achievement = sequelize.define('Achievement', {
         defaultValue: DataTypes.NOW,
         allowNull: false
     }
+},{
+    timestamps: false
 });
 
 Achievement.belongsTo(User);

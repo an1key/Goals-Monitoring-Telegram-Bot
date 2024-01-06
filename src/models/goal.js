@@ -1,5 +1,5 @@
 const {DataTypes} = require("sequelize");
-const sequelize = require('../utils/database');
+const {sequelize} = require('../utils/database');
 const User = require('./user');
 
 const Goal = sequelize.define('Goal',{
@@ -35,6 +35,8 @@ const Goal = sequelize.define('Goal',{
         type: DataTypes.STRING,
         defaultValue: " "
     }
+}, {
+    timestamps: false
 })
 
 Goal.belongsTo(User);

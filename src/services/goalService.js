@@ -6,7 +6,8 @@ class GoalService{
     }
 
     static async getAllGoalsByUserId(userId){
-        return await Goal.findAll({where: {UserId: userId}});
+        console.log(userId)
+        return await Goal.findAll({where: {UserTelegramId: userId}});
     }
 }
 

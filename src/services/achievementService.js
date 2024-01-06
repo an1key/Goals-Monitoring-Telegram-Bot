@@ -6,7 +6,7 @@ class AchievementService {
     }
 
     static async getAllAchievementsByUserId(userId) {
-        return await Achievement.findAll({ where: { UserId: userId } });
+        return await Achievement.findAll({ where: { UserTelegramId: userId } });
     }
 }
 
