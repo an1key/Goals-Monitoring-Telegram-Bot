@@ -1,12 +1,15 @@
 const {Sequelize, Model, DataTypes} = require('Sequelize');
 const sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: 'data/userdata.sqlite'
+    storage: 'data/userdata.sqlite',
+    define: {
+        timestamps: false
+    }
 });
 
-const User = sequelize.define("user", {
+const User = sequelize.define('User', {
     telegram_id: {
-        type:DataTypes.INTEGER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false
     },
@@ -16,7 +19,7 @@ const User = sequelize.define("user", {
     }
 })
 
-const Goals = sequelize.define("goals",{
+const Goals = sequelize.define('Goals',{
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -44,8 +47,33 @@ const Goals = sequelize.define("goals",{
     expiredate:{
         type: DataTypes.DATE,
         allowNull: false
+    },
+    notes:{
+        type: DataTypes.STRING,
+        defaultValue: " "
     }
 })
-User.hasMany(Goals);
 
-console.log("success");
+const Achievements = sequelize.define('Achievements', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
+    },
+    content: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    date: {
+        type: DataTypes.DATE,
+        allowNull: false
+    }
+})
+
+
+User.hasMany(Goals);
+User.hasMany(Achievements);
+
+sequelize.sync().then((res) => {console.log(res)})
+
