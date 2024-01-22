@@ -34,6 +34,11 @@ const Goal = sequelize.define('Goal',{
     notes:{
         type: DataTypes.STRING,
         defaultValue: " "
+    },
+    finished:{
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
     }
 }, {
     timestamps: false

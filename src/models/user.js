@@ -11,6 +11,10 @@ const User = sequelize.define('User', {
     name: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    msg_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 }, {
     timestamps: false
