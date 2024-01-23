@@ -11,9 +11,9 @@ class GoalController {
     }
     static async getAllGoalsByUserId(userId){
         try{
-            const {count, goals} = await Goal.findAndCountAll({where:{UserTelegramId: userId}});
+            const goals = await Goal.findAll({where:{UserTelegramId: userId}});
             console.log(`Got ${goals.length} goals from user ${userId}`);
-            return {count, goals};
+            return goals;
         }catch(error){
             console.error(`Error getting goals: ${error.message}`)
         }
